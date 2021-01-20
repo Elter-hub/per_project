@@ -8,7 +8,12 @@ import { SignupModule } from './auth/signup/signup.module';
 import { UserModule } from './user/user.module';
 
 @Module({
-  imports: [TypeOrmModule.forRoot(typeOrmConfig), SigninModule, SignupModule, UserModule],
+  imports: [
+    TypeOrmModule.forRoot(typeOrmConfig),
+    SigninModule,
+    SignupModule,
+    UserModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })

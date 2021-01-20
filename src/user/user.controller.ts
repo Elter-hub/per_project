@@ -9,19 +9,19 @@ import {
   HttpStatus,
   NotFoundException,
 } from '@nestjs/common';
-import { IUsers } from './interfaces/user.interface';
+import { IUser } from './interfaces/user.interface';
 import { UserService } from './user.service';
 
 // @UseGuards(AuthGuard("jwt"))
 @Controller('/api/user')
-export class UsersController {
+export class UserController {
   constructor(private readonly usersService: UserService) {}
 
   @Get('/:userId/profile')
   public async getUser(
     @Res() res,
     @Param('userId') userId: string,
-  ): Promise<IUsers> {
+  ): Promise<IUser> {
     const user = await this.usersService.findById(userId);
 
     if (!user) {

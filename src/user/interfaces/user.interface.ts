@@ -1,4 +1,4 @@
-export interface IUsers {
+export interface IUser {
   readonly id: number;
   readonly name: string;
   readonly lastname: string;

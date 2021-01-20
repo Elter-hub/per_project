@@ -4,17 +4,17 @@ import {
   HttpException,
   HttpStatus,
 } from '@nestjs/common';
-import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './entities/user.entity';
-import { IUsers } from './interfaces/user.interface';
+import { IUser } from './interfaces/user.interface';
 import { UserDto } from './dto/user.dto';
+import { UserRepository } from './user.repository';
 
 @Injectable()
 export class UserService {
   constructor(
     @InjectRepository(User)
-    private readonly userRepository: Repository<User>,
+    private readonly userRepository: UserRepository,
   ) {}
 
   public async findByEmail(email: string): Promise<User> {
@@ -45,9 +45,10 @@ export class UserService {
     return user;
   }
 
-  public async create(userDto: UserDto): Promise<IUsers> {
+  public async create(userDto: UserDto): Promise<IUser> {
     try {
-      return await this.userRepository.save(userDto);
+      const user = await this.userRepository.save(userDto);
+      return user;
     } catch (err) {
       throw new HttpException(err, HttpStatus.BAD_REQUEST);
     }
