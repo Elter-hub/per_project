@@ -6,9 +6,7 @@ import {
   Matches,
 } from 'class-validator';
 
-export class SignupUserDto {
-  readonly id: number;
-
+export class UserDto {
   @IsString()
   @MaxLength(30)
   readonly name: string;
@@ -17,15 +15,9 @@ export class SignupUserDto {
   @MaxLength(40)
   readonly lastname: string;
 
-  @IsEmail()
+  @IsNotEmpty()
   @Matches(/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$/)
   readonly email: string;
-
-  @IsNotEmpty()
-  @IsString()
-  @MaxLength(60)
-  @Matches(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$/) //small capital digit symbol
-  password: string;
 
   @IsNotEmpty()
   @IsString()
