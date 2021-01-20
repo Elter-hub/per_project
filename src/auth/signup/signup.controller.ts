@@ -19,8 +19,9 @@ export class SignupController {
         status: 200,
       });
     } catch (err) {
+      console.log(err);
       return res.status(HttpStatus.BAD_REQUEST).json({
-        message: 'Error: User not registration!',
+        message: err,
         status: 400,
       });
     }

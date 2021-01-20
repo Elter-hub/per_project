@@ -6,6 +6,7 @@ import { typeOrmConfig } from './dbconfig/typeorm.config';
 import { SigninModule } from './auth/signin/signin.module';
 import { SignupModule } from './auth/signup/signup.module';
 import { UserModule } from './user/user.module';
+import { UserService } from './user/user.service';
 
 @Module({
   imports: [
